@@ -27,3 +27,4 @@ _ProjectSite is a web application built with a Django framework. it cantains sho
 <p>https://www.facebook.com/joel.dave.41/</p>
 <img src="img\\GH.png" alt="logo6" width="30" style="border-radius: 50%;">
 <p>https://github.com/JDAB3900</p>
+
