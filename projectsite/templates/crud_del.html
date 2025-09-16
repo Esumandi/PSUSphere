@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content">
+  <div class="container-fluid">
+    <h4 class="page-title">Delete</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Confirm Delete</div>
+            <div class="card-category">This action cannot be undone</div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <form method="post">
+                {% csrf_token %}
+                <p>Are you sure you want to delete "{{ object }}"?</p>
+                <button type="submit" class="btn btn-danger btn-rounded">Yes, delete</button>
+                <a href="javascript:history.back()" class="btn btn-secondary btn-rounded ml-2">Cancel</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
