@@ -5,7 +5,7 @@
       {# First #}
       {% if page_obj.number > 1 %}
         <li class="page-item">
-          <a class="page-link" href="?page=1{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">First</a>
+          <a class="page-link" href="?page=1{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by|urlencode }}{% endif %}">First</a>
         </li>
       {% else %}
         <li class="page-item disabled"><span class="page-link">First</span></li>
@@ -14,7 +14,7 @@
       {# Prev #}
       {% if page_obj.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">Prev</a>
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by|urlencode }}{% endif %}">Prev</a>
         </li>
       {% else %}
         <li class="page-item disabled"><span class="page-link">Prev</span></li>
@@ -26,7 +26,7 @@
           <li class="page-item active"><span class="page-link">{{ page_num }}</span></li>
         {% else %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ page_num }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">{{ page_num }}</a>
+            <a class="page-link" href="?page={{ page_num }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by|urlencode }}{% endif %}">{{ page_num }}</a>
           </li>
         {% endif %}
       {% endfor %}
@@ -34,7 +34,7 @@
       {# Next #}
       {% if page_obj.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">Next</a>
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by|urlencode }}{% endif %}">Next</a>
         </li>
       {% else %}
         <li class="page-item disabled"><span class="page-link">Next</span></li>
@@ -43,7 +43,7 @@
       {# Last #}
       {% if page_obj.number != paginator.num_pages %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">Last</a>
+          <a class="page-link" href="?page={{ paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by|urlencode }}{% endif %}">Last</a>
         </li>
       {% else %}
         <li class="page-item disabled"><span class="page-link">Last</span></li>

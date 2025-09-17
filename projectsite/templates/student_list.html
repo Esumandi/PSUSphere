@@ -12,10 +12,16 @@
           <br />
           <div class="col-md-12 row">
             <div class="col-md-6">
-              <form class="navbar-left navbar-form nav-search mr-md-3" action="" method="get">
+              <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'student-list' %}" method="get">
                 <div class="input-group">
                   <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search ..."
-                    class="form-control" />
+                    class="form-control" aria-label="Search students" />
+                  {% if request.GET.sort_by %}
+                  <input type="hidden" name="sort_by" value="{{ request.GET.sort_by }}" />
+                  {% endif %}
+                  {% if request.GET.direction %}
+                  <input type="hidden" name="direction" value="{{ request.GET.direction }}" />
+                  {% endif %}
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i class="la la-search search-icon"></i>
@@ -31,6 +37,33 @@
             </div>
           </div>
           <div class="card-body">
+            <form method="get" action="{% url 'student-list' %}" class="row g-2 align-items-center">
+              <div class="col-auto">
+                <label for="studentSort" class="col-form-label">Sort by</label>
+              </div>
+              <div class="col-auto">
+                <select class="form-control form-control-sm" id="studentSort" name="sort_by">
+                  <option value="lastname" {% if request.GET.sort_by == 'lastname' or not request.GET.sort_by %}selected{% endif %}>Last
+                    Name</option>
+                  <option value="firstname" {% if request.GET.sort_by == 'firstname' %}selected{% endif %}>First Name</option>
+                  <option value="student_id" {% if request.GET.sort_by == 'student_id' %}selected{% endif %}>Student ID</option>
+                  <option value="program__prog_name" {% if request.GET.sort_by == 'program__prog_name' %}selected{% endif %}>Program
+                  </option>
+                </select>
+              </div>
+              <div class="col-auto">
+                <select name="direction" class="form-control form-control-sm" aria-label="Sort direction">
+                  <option value="asc" {% if request.GET.direction != 'desc' %}selected{% endif %}>Ascending</option>
+                  <option value="desc" {% if request.GET.direction == 'desc' %}selected{% endif %}>Descending</option>
+                </select>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+              </div>
+              {% if request.GET.q %}
+              <input type="hidden" name="q" value="{{ request.GET.q }}" />
+              {% endif %}
+            </form>
             <table class="table table-striped mt-3">
               <thead>
                 <tr>
